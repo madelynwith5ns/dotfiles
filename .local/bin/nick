@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -n "$USER_NICK" ]; then
+    echo "$USER_NICK"
+else
+    echo "$USER"
+fi

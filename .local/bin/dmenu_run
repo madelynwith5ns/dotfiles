@@ -1,0 +1,2 @@
+#!/bin/sh
+dmenu_path | rofi -m DP-1 -dmenu -p "dmenu" "$@" | ${SHELL:-"/bin/sh"} &

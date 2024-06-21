@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+export SWAPMEDIA_MOUNT=/mnt/usbhd2
+
+echo Unmounting $1
+sudo umount $1
+echo Please replace the media in device $1 and then press ENTER.
+read
+sudo mount $1 $SWAPMEDIA_MOUNT

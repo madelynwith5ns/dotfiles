@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+vmrss $(pgrep $1)
