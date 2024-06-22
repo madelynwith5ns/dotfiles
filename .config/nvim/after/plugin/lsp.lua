@@ -1,6 +1,8 @@
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 
+require("neodev").setup({})
+
 cmp.setup({
     sources = {
         {name = 'nvim_lsp'},

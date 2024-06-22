@@ -54,4 +54,6 @@ return require('packer').startup(function(use)
     use 'folke/trouble.nvim'
     use 'glacambre/firenvim'
     use 'pwntester/octo.nvim'
+    use 'dstein64/nvim-scrollview'
+    use 'folke/neodev.nvim'
 end)
