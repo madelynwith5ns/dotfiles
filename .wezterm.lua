@@ -12,7 +12,7 @@ config.scrollback_lines = 10000
 config.enable_scroll_bar = false
 config.color_scheme = 'Catppuccin Macchiato'
 config.hide_tab_bar_if_only_one_tab = true
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.5
 
 -- binds
 config.keys = {
