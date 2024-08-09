@@ -1,5 +1,4 @@
 local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
 
 require("neodev").setup({})
 
@@ -36,7 +35,7 @@ cmp.setup({
 
 local lsp_zero = require('lsp-zero')
 
-lsp_zero.on_attach(function(client, bufnr)
+lsp_zero.on_attach(function(_, bufnr)
 	lsp_zero.default_keymaps({buffer = bufnr})
 	local opts = {buffer = bufnr, remap = false}
 	vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts);
@@ -55,5 +54,3 @@ require('mason-lspconfig').setup({
     lsp_zero.default_setup,
   },
 })
-
-

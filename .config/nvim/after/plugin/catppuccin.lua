@@ -1,5 +1,5 @@
 require("catppuccin").setup({
-    flavour = "macchiato", -- latte, frappe, macchiato, mocha
+    flavour = "frappe", -- latte, frappe, macchiato, mocha
     background = { -- :h background
         light = "latte",
         dark = "macchiato",
@@ -28,9 +28,11 @@ require("catppuccin").setup({
         properties = {},
         types = {},
         operators = {},
+        -- miscs = {}, -- Uncomment to turn off hard-coded styles
     },
     color_overrides = {},
     custom_highlights = {},
+    default_integrations = true,
     integrations = {
         cmp = true,
         gitsigns = true,
@@ -41,10 +43,8 @@ require("catppuccin").setup({
             enabled = true,
             indentscope_color = "",
         },
+        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
 })
 
 vim.cmd.colorscheme "catppuccin"
-
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
