@@ -1,7 +1,7 @@
 local telescope = require('telescope.builtin')
 
 vim.keymap.set("n", "<leader><leader><leader>", vim.cmd.so);
-vim.keymap.set("n", "<leader>pv", vim.cmd.Neotree);
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex);
 vim.keymap.set("n", "<leader>f", telescope.find_files, {});
 vim.keymap.set('n', '<leader>gf', telescope.git_files, {})
 vim.keymap.set('n', '<leader>ps', function()
