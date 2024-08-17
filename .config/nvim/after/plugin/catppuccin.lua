@@ -1,5 +1,26 @@
+-- follow system theme
+-- i don't know if this'll work outside of COSMIC and GNOME,
+-- i'd assume not since its reading a gnome setting
+-- but cosmic isn't gnome anymore and it still sets this sooo
+-- it works on my machine :3
+local handle = io.popen("dconf read /org/gnome/desktop/interface/color-scheme")
+local theme;
+if handle == nil then
+    theme = "frappe"
+else
+    local scheme = handle:read("*a"):gsub("%s+", "")
+    handle:close()
+    if scheme == "'prefer-dark'" then
+        theme = "mocha"
+    elseif scheme == "'prefer-light'" then
+        theme = "latte"
+    else
+        theme = "frappe"
+    end
+end
+
 require("catppuccin").setup({
-    flavour = "latte", -- latte, frappe, macchiato, mocha
+    flavour = theme, -- latte, frappe, macchiato, mocha
     background = { -- :h background
         light = "latte",
         dark = "macchiato",
