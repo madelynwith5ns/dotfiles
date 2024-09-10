@@ -5,14 +5,37 @@ local config = wezterm.config_builder()
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.font_size = 14
-config.default_cursor_style = 'BlinkingBar'
 config.animation_fps = 240
+config.default_cursor_style = 'BlinkingBar'
 config.max_fps = 240
 config.scrollback_lines = 10000
 config.enable_scroll_bar = false
-config.color_scheme = 'Catppuccin Macchiato'
+
+-- set theme by system theme
+-- (probably only works on cosmic and gnome)
+-- uwu
+local handle = io.popen("dconf read /org/gnome/desktop/interface/color-scheme")
+if handle == nil then
+    config.color_scheme = 'Catppuccin Frappe'
+    config.window_background_opacity = 0.8
+else
+    local scheme = handle:read("*a"):gsub("%s+", "")
+    handle:close()
+    if scheme == "'prefer-dark'" then
+        config.color_scheme = 'Catppuccin Mocha'
+        config.window_background_opacity = 0.95
+    elseif scheme == "'prefer-light'" then
+        config.color_scheme = 'Catppuccin Latte'
+        config.window_background_opacity = 0.7
+    else
+        config.color_scheme = 'Catppuccin Frappe'
+        config.window_background_opacity = 0.8
+    end
+end
+
 config.hide_tab_bar_if_only_one_tab = true
-config.window_background_opacity = 0.5
+config.font = wezterm.font 'JetBrainsMono'
+config.window_decorations = "NONE"
 
 -- binds
 config.keys = {
@@ -45,6 +68,14 @@ config.keys = {
         { key = "j", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize { 'Down', 1 } },
         { key = "k", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize { 'Up', 1 } },
         { key = "l", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize { 'Right', 1 } },
+        { key = "F11", mods = "", action = wezterm.action.ToggleFullScreen }
 }
+
+config.unix_domains = {
+    {
+        name = 'unix',
+    },
+}
+
 
 return config
