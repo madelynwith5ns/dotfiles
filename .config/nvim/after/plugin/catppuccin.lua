@@ -11,7 +11,7 @@ else
     local scheme = handle:read("*a"):gsub("%s+", "")
     handle:close()
     if scheme == "'prefer-dark'" then
-        theme = "mocha"
+        theme = "frappe"
     elseif scheme == "'prefer-light'" then
         theme = "latte"
     else

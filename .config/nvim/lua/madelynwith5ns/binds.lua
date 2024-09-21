@@ -2,10 +2,10 @@ local telescope = require('telescope.builtin')
 
 vim.keymap.set("n", "<leader><leader><leader>", vim.cmd.so);
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex);
-vim.keymap.set("n", "<leader>f", telescope.find_files, {});
+vim.keymap.set("n", "<leader>pf", telescope.find_files, {});
 vim.keymap.set('n', '<leader>gf', telescope.git_files, {})
 vim.keymap.set('n', '<leader>ps', function()
-    telescope.grep_string({search = vim.fn.input("whatcha lookin for? ")})
+    telescope.grep_string({ search = vim.fn.input("grep > ") })
 end, {})
 vim.keymap.set('n', '<leader>u', function()
     vim.cmd.UndotreeShow()
@@ -36,7 +36,8 @@ vim.keymap.set("n", "<leader>gs", vim.cmd.Git);
 vim.keymap.set("n", "<leader>gp", function() vim.cmd.Git("push") end);
 -- ton of build shortcuts
 vim.keymap.set("n", "<leader>bf", "<CMD>!./fluffy<CR>");
-vim.keymap.set("n", "<leader>bg", "<CMD>!./gradlew build<CR>");
+vim.keymap.set("n", "<leader>bgb", "<CMD>!./gradlew build<CR>");
+vim.keymap.set("n", "<leader>bgs", "<CMD>!./gradlew shadowJar<CR>");
 vim.keymap.set("n", "<leader>bv", "<CMD>!./mvnw build<CR>");
 vim.keymap.set("n", "<leader>bm", "<CMD>!make -j24<CR>");
 vim.keymap.set("n", "<leader>bc", "<CMD>!cargo build<CR>");
@@ -50,3 +51,29 @@ vim.keymap.set("n", "<leader><leader>uwu", "<CMD>split<CR><C-w>j<CMD>term<CR>ihy
 vim.keymap.set("n", "<leader><leader>vn", "<CMD>!pvmrss nvim<CR>");
 -- the greatest keybind of all time
 vim.keymap.set("n", "<leader>jq", "<CMD>%!jq .<CR>");
+
+vim.keymap.set("n", "<leader>vfb", function() vim.lsp.buf.format({ async = true }) end);
+
+vim.keymap.set("n", "<leader>df", function()
+    local here = vim.fn.expand("%:p");
+    local newname = vim.fn.input("Duplicate to? ", here);
+    if newname == '' then
+        print("cancelled");
+        return
+    end
+
+    vim.cmd('silent! !cp "' .. here .. '" "' .. newname .. '"');
+    print("duuplicated to " .. newname);
+end);
+vim.keymap.set("n", "<leader>ds", function()
+    local here = vim.fn.expand("%:p");
+    local newname = vim.fn.input("Duplicate to? ", here);
+    if newname == '' then
+        print("cancelled");
+        return
+    end
+
+    vim.cmd('silent! !cp "' .. here .. '" "' .. newname .. '"');
+    print("duuplicated to " .. newname);
+    vim.cmd('e "' .. newname .. '"');
+end);
