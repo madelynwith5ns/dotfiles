@@ -1,0 +1,9 @@
+(
+    output: "all",
+    source: Path("/home/madelynwith5ns/Pictures/Wallpapers/sakura-trees-over-river.jpg"),
+    filter_by_theme: true,
+    rotation_frequency: 7200,
+    filter_method: Lanczos,
+    scaling_mode: Zoom,
+    sampling_method: Alphanumeric,
+)
