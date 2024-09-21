@@ -22,11 +22,11 @@ else
     local scheme = handle:read("*a"):gsub("%s+", "")
     handle:close()
     if scheme == "'prefer-dark'" then
-        config.color_scheme = 'Catppuccin Mocha'
-        config.window_background_opacity = 0.95
+        config.color_scheme = 'Catppuccin Frappe'
+        config.window_background_opacity = 0.8
     elseif scheme == "'prefer-light'" then
         config.color_scheme = 'Catppuccin Latte'
-        config.window_background_opacity = 0.7
+        config.window_background_opacity = 0.8
     else
         config.color_scheme = 'Catppuccin Frappe'
         config.window_background_opacity = 0.8
@@ -72,9 +72,9 @@ config.keys = {
 }
 
 config.unix_domains = {
-    {
-        name = 'unix',
-    },
+  {
+    name = 'unix',
+  },
 }
 
 
