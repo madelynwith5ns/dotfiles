@@ -54,6 +54,9 @@ vim.keymap.set("n", "<leader>jq", "<CMD>%!jq .<CR>");
 
 vim.keymap.set("n", "<leader>vfb", function() vim.lsp.buf.format({ async = true }) end);
 
+vim.keymap.set("n", "<leader><leader>cf", "mmggvGV\"+y'm");
+vim.keymap.set("n", "<leader><leader>df", "ggvGVd");
+
 vim.keymap.set("n", "<leader>df", function()
     local here = vim.fn.expand("%:p");
     local newname = vim.fn.input("Duplicate to? ", here);
