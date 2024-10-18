@@ -1,4 +1,6 @@
 local telescope = require('telescope.builtin')
+local magichat = require("magichat")
+magichat.setup()
 
 vim.keymap.set("n", "<leader><leader><leader>", vim.cmd.so);
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex);
@@ -41,7 +43,6 @@ vim.keymap.set("n", "<leader>bgs", "<CMD>!./gradlew shadowJar<CR>");
 vim.keymap.set("n", "<leader>bv", "<CMD>!./mvnw build<CR>");
 vim.keymap.set("n", "<leader>bm", "<CMD>!make -j24<CR>");
 vim.keymap.set("n", "<leader>bc", "<CMD>!cargo build<CR>");
-vim.keymap.set("n", "<leader>rc", "<CMD>!cargo run<CR>");
 vim.keymap.set("n", "<leader>bs", "<CMD>!./build.sh<CR>");
 -- beautiful term keybind
 vim.keymap.set("n", "<leader>te", "<CMD>split<CR><C-w>j<CMD>term<CR>i");
@@ -80,3 +81,17 @@ vim.keymap.set("n", "<leader>ds", function()
     print("duuplicated to " .. newname);
     vim.cmd('e "' .. newname .. '"');
 end);
+
+-- okay *THESE* are the greatest binds of all time.
+vim.keymap.set("v", "<leader><leader>e", ":!xargs -I visualselection echo \"print(visualselection);\" | python3<CR>");
+vim.keymap.set("v", "<leader><leader>p", ":!python3<CR>");
+
+vim.keymap.set("n", "<leader>hs", function() 
+    magichat.stash()
+end)
+vim.keymap.set("n", "<leader>hu", function() magichat.unstash() end)
+vim.keymap.set("n", "<leader>hb", function() magichat.burn() end)
+
+-- vocomment...
+vim.keymap.set("n", "<leader><leader>vc", function() require("vocomment").vocomplay() end)
+vim.keymap.set("n", "<leader><leader>vr", function() require("vocomment").vocomrecord() end)

@@ -16,6 +16,6 @@ require("presence").setup({
     git_commit_text     = "git push --force :3",
     plugin_manager_text = "<3",
     reading_text        = "am rtfming :3",
-    workspace_text      = "uwu :3",
+    workspace_text      = ">~<",
     line_number_text    = "Line %s out of %s",
 })
