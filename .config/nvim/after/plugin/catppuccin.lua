@@ -6,17 +6,25 @@
 local handle = io.popen("dconf read /org/gnome/desktop/interface/color-scheme")
 local theme;
 if handle == nil then
-    theme = "frappe"
+    theme = "latte"
 else
     local scheme = handle:read("*a"):gsub("%s+", "")
     handle:close()
     if scheme == "'prefer-dark'" then
-        theme = "frappe"
+        theme = "mocha"
     elseif scheme == "'prefer-light'" then
         theme = "latte"
     else
-        theme = "frappe"
+        theme = "latte"
     end
+end
+
+-- neovide transparency
+vim.g.neovide_transparency = 0.8
+
+local transparent = true
+if vim.g.neovide then
+    transparent = false
 end
 
 require("catppuccin").setup({
@@ -25,7 +33,7 @@ require("catppuccin").setup({
         light = "latte",
         dark = "macchiato",
     },
-    transparent_background = true, -- disables setting the background color.
+    transparent_background = transparent, -- disables setting the background color.
     show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
     term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
     dim_inactive = {
@@ -69,3 +77,7 @@ require("catppuccin").setup({
 })
 
 vim.cmd.colorscheme "catppuccin"
+
+vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='foreground', bold=true })
+vim.api.nvim_set_hl(0, 'LineNr', { fg='foreground', bold=true })
+vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='foreground', bold=true })

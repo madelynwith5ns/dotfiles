@@ -1,13 +1,11 @@
 local telescope = require('telescope.builtin')
-local magichat = require("magichat")
-magichat.setup()
 
 vim.keymap.set("n", "<leader><leader><leader>", vim.cmd.so);
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex);
-vim.keymap.set("n", "<leader>pf", telescope.find_files, {});
+vim.keymap.set("n", "<leader>fs", vim.cmd.Oil);
+vim.keymap.set("n", "<leader>pv", telescope.find_files, {});
 vim.keymap.set('n', '<leader>gf', telescope.git_files, {})
 vim.keymap.set('n', '<leader>ps', function()
-    telescope.grep_string({ search = vim.fn.input("grep > ") })
+    telescope.grep_string({ search = vim.fn.input("search query? ") })
 end, {})
 vim.keymap.set('n', '<leader>u', function()
     vim.cmd.UndotreeShow()
@@ -85,13 +83,24 @@ end);
 -- okay *THESE* are the greatest binds of all time.
 vim.keymap.set("v", "<leader><leader>e", ":!xargs -I visualselection echo \"print(visualselection);\" | python3<CR>");
 vim.keymap.set("v", "<leader><leader>p", ":!python3<CR>");
+vim.keymap.set("v", "<leader><leader>b", ":!bash<CR>");
 
-vim.keymap.set("n", "<leader>hs", function() 
-    magichat.stash()
-end)
-vim.keymap.set("n", "<leader>hu", function() magichat.unstash() end)
-vim.keymap.set("n", "<leader>hb", function() magichat.burn() end)
+-- evil eldritch stack trace hack
+vim.keymap.set("v", "<leader><leader>st", "y<CMD>new __stack_trace_stuff<CR>ggvGV\"_dpggd2dggvGV<ggvGV:s/\\(.*\\)(\\(.*\\)) \\[\\(.*\\)\\]/addr2line -e \\1 \\2/<CR>ggvGV:!bash<CR>ggvGV>ggO<BS>Stack Trace:<ESC>ggvGV:s/??:?/Unknown Location/<CR>ggvGV:s/??:0/Unknown Location/<CR>");
+vim.keymap.set("v", "<leader><leader>te", ":!echo %<CR>");
 
--- vocomment...
-vim.keymap.set("n", "<leader><leader>vc", function() require("vocomment").vocomplay() end)
-vim.keymap.set("n", "<leader><leader>vr", function() require("vocomment").vocomrecord() end)
+vim.keymap.set("i", "<C-e>", "expect();<Left><Left>");
+
+vim.keymap.set("i", "<C-s>ma", function()
+    local t = vim.fn.input("type? ");
+    local n = vim.fn.input("name? ");
+    vim.fn.feedkeys(t .. " *" .. n .. " = malloc(sizeof(*" .. n .. "));o");
+end);
+vim.keymap.set("i", "<C-s>xma", function()
+    local t = vim.fn.input("type? ");
+    local n = vim.fn.input("name? ");
+    vim.fn.feedkeys(t .. " *" .. n .. " = malloc(sizeof(*" .. n .. "));o");
+end);
+vim.keymap.set("n", "<C-s>na", function()
+    vim.fn.feedkeys([[yiwoif (!pa) {fprintf(stderr, "mp");abort();}'pci"\nba]]);
+end);
